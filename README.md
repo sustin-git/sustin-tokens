@@ -7,9 +7,9 @@ Shared design tokens (CSS custom properties) for the Sust.in sites: i5forum.org,
 Install from this repository at a tagged version (not published to a registry):
 
 ```bash
-pnpm add github:sustin-git/sustin-tokens#v0.1.0
+pnpm add github:sustin-git/sustin-tokens#v0.1.1
 # or
-npm install github:sustin-git/sustin-tokens#v0.1.0
+npm install github:sustin-git/sustin-tokens#v0.1.1
 ```
 
 Import it before the site's own tokens:
@@ -50,3 +50,7 @@ Site-specific tokens stay with the site: i5Forum's glass, aurora, navigation til
 2. Update the dependency in each site and check both light and dark themes there.
 
 Values were taken from i5summit `src/styles/tokens.css` at commit 6f855c2 (12 November 2026).
+
+## Licence
+
+MIT, see [LICENSE](LICENSE). Copyright (c) 2026 Sustainable Intelligence ASBL.
