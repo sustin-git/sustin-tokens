@@ -1,0 +1,26 @@
+{
+  "name": "@sustin/tokens",
+  "version": "0.1.0",
+  "description": "Shared design tokens (CSS custom properties) for the Sust.in sites",
+  "type": "module",
+  "files": [
+    "tokens.css"
+  ],
+  "style": "./tokens.css",
+  "exports": {
+    ".": {
+      "style": "./tokens.css",
+      "default": "./tokens.css"
+    },
+    "./tokens.css": "./tokens.css",
+    "./package.json": "./package.json"
+  },
+  "sideEffects": [
+    "*.css"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sustin-git/sustin-tokens.git"
+  },
+  "private": true
+}

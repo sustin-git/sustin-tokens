@@ -1,0 +1,151 @@
+/*
+ * @sustin/tokens: shared design tokens for the Sust.in sites
+ * (i5forum.org, i5academy.org, i5benchmark.com).
+ *
+ * Source: i5summit src/styles/tokens.css at 6f855c2 (12 Nov 2026), shared part only.
+ * Site-specific tokens (i5Forum glass, aurora, nav tiles, sidebar sizes; i5Academy
+ * dimension colours) stay in each site's own stylesheet, imported after this file.
+ *
+ * Themes
+ * - Light is the default (:root).
+ * - Dark applies when the OS prefers dark and the page has not chosen light
+ *   (`data-theme` absent or not "light" on <html>), or on any element with
+ *   data-theme="dark".
+ * - data-theme="light" / "dark" work on any element, so a section can flip theme
+ *   inside a page. `.on-dark` styles a deep-indigo panel inside either theme.
+ */
+
+:root {
+  /* Brand (from the logo) */
+  --indigo: #2b17b5;
+  --blue: #1b6fe0;
+  --cyan: #0ab4f5;
+  --lilac: #9f9ce4;
+  --violet: #6c4fe0;
+  --deep: #0e0b40;
+
+  /* Gradients */
+  --grad-solid: linear-gradient(120deg, #2b17b5, #1b6fe0 45%, #0ab4f5);
+  --grad-solid-hover: linear-gradient(120deg, #0ab4f5, #6c4fe0 50%, #2b17b5);
+  --grad-on-dark: linear-gradient(
+    100deg,
+    #ffffff 5%,
+    #7fd8ff 30%,
+    #b9a9ff 52%,
+    #ffffff 72%,
+    #7fd8ff 95%
+  );
+
+  /* Type: only open-source font names (SIL OFL or equivalent) and generic keywords */
+  --font-head: 'Space Grotesk Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-sans: 'Geist Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'Geist Mono Variable', ui-monospace, monospace;
+  --font-cjk: 'Noto Sans SC', 'Source Han Sans SC', system-ui, sans-serif;
+
+  --fs-hero: clamp(76px, 13vw, 236px);
+  --fs-h2: clamp(44px, 6.4vw, 104px);
+  --fs-h3: clamp(22px, 2vw, 30px);
+  --fs-body: 17px;
+  --fs-lede: clamp(18px, 1.5vw, 21px);
+  --fs-meta: 13px;
+
+  --track-head: -0.04em;
+  --track-hero: -0.06em;
+  --measure: 65ch;
+
+  /* Shape */
+  --r-xl: 32px; /* panels */
+  --r-lg: 24px; /* cards */
+  --r-md: 16px; /* small cards */
+  --r-pill: 999px;
+
+  /* Spacing */
+  --panel-gap: 12px;
+  --pad-block: clamp(80px, 10vw, 150px);
+  --pad-block-tight: clamp(56px, 7vw, 100px);
+  --pad-inline: clamp(20px, 5vw, 72px);
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --ease-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ---------- Light (default) ---------- */
+:root,
+[data-theme='light'] {
+  color-scheme: light;
+  --bg: #eceef6;
+  --surface: #fafbff;
+  --surface-2: #ffffff;
+  --ink: #15123d;
+  --ink-2: rgba(21, 18, 61, 0.72);
+  /* .71, not .5: 13 px meta text keeps WCAG AA (4.5:1) on translucent panels */
+  --ink-3: rgba(21, 18, 61, 0.71);
+  --line: rgba(21, 18, 61, 0.1);
+  /* Form feedback (AA on --surface) */
+  --error: #b3261e;
+  --success: #0b7045;
+  --notice: #7a4f00;
+  /* Cyan is 2.3:1 on light surfaces, so light uses blue for focus */
+  --focus: var(--blue);
+  --link: var(--blue);
+  --grad: linear-gradient(100deg, #2b17b5 5%, #0ab4f5 30%, #6c4fe0 52%, #2b17b5 72%, #0ab4f5 95%);
+  /* Small gradient text: indigo to a blue dark enough for AA (no cyan) */
+  --grad-text: linear-gradient(100deg, #2b17b5, #1a55c0);
+}
+
+/* ---------- Dark ---------- */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    color-scheme: dark;
+    --bg: #0b0a26;
+    --surface: #12103a;
+    --surface-2: #171448;
+    --ink: #eef0ff;
+    --ink-2: rgba(238, 240, 255, 0.8);
+    --ink-3: rgba(238, 240, 255, 0.72);
+    --line: rgba(238, 240, 255, 0.12);
+    --error: #ffb4c0;
+    --success: #9ff0c6;
+    --notice: #ffe3a3;
+    --focus: var(--cyan);
+    --link: #8ab8ff;
+    --grad: var(--grad-on-dark);
+    --grad-text: linear-gradient(100deg, #ffffff, #b9c8ff);
+  }
+}
+
+[data-theme='dark'] {
+  color-scheme: dark;
+  --bg: #0b0a26;
+  --surface: #12103a;
+  --surface-2: #171448;
+  --ink: #eef0ff;
+  --ink-2: rgba(238, 240, 255, 0.8);
+  --ink-3: rgba(238, 240, 255, 0.72);
+  --line: rgba(238, 240, 255, 0.12);
+  --error: #ffb4c0;
+  --success: #9ff0c6;
+  --notice: #ffe3a3;
+  --focus: var(--cyan);
+  --link: #8ab8ff;
+  --grad: var(--grad-on-dark);
+  --grad-text: linear-gradient(100deg, #ffffff, #b9c8ff);
+}
+
+/* ---------- Dark panels (deep indigo) inside either theme ---------- */
+.on-dark {
+  --ink: #f2f3ff;
+  --ink-2: rgba(242, 243, 255, 0.76);
+  --ink-3: rgba(242, 243, 255, 0.68);
+  --line: rgba(242, 243, 255, 0.14);
+  --surface: rgba(255, 255, 255, 0.06);
+  --surface-2: rgba(255, 255, 255, 0.1);
+  --focus: var(--cyan);
+  --grad: var(--grad-on-dark);
+  --grad-text: linear-gradient(100deg, #ffffff, #b9c8ff);
+  --error: #ffc2cd;
+  --success: #9ff0c6;
+  --notice: #ffe3a3;
+  color: var(--ink);
+}
